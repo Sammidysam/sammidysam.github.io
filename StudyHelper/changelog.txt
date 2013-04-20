@@ -1,0 +1,3 @@
+StudyHelper Changelog:
+April 20, 2013:
+	-Made launcher for StudyHelper
