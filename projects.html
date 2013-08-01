@@ -1,0 +1,26 @@
+---
+layout: default
+title: Projects
+---
+
+<div id="home">
+  <h1>Projects</h1>
+  All projects are listed with the projects made first first and the projects made last last.<br />
+  
+  <h2>Games</h2>
+  <ul class="posts">
+    {% for project in site.posts %}
+      {% if project.type == "game" %}
+        <li>&raquo; <a href="{{ project.url }}">{{ project.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  
+  <h2>Other Creations</h2>
+  <ul class="posts">
+    {% for project in site.posts %}
+      {% if project.type == "other" %}
+        <li>&raquo; <a href="{{ project.url }}">{{ project.title }}</a></li>
+      {% endif %}
+    {% endfor %}
+</div>

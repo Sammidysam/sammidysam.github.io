@@ -1,3 +1,0 @@
-PixelZombies Changelog:
-March 24, 2013:
-	-Launcher updated with displaying changelog capabilities
