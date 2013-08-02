@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  Welcome to Jekyll!
 date:   2013-07-31 21:27:26
 type: blog
 ---
