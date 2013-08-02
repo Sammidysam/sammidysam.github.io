@@ -7,8 +7,29 @@ class Page
 	attr_writer :date
 	attr_writer :type
 
-	def write(name)
-		puts "layout: " + @layout, "title: " + @title, "date: " + @date, "type: " + @type
+	def default_name
+		@date ||= Time.now.strftime "%Y-%m-%d"
+		title_copy = @title.dup
+
+		# If title has capital letters
+		if @title =~ /[A-Z]/
+			title_copy.gsub!(' ', '-')
+			title_copy.gsub!('"', ' ')
+			title_copy = @date[0..(@date.include?(' ') ? @date.index(' ') : @date.length)].concat '-'.concat title_copy.downcase
+			title_copy.gsub!(' ', '')
+			title_copy.concat ".markdown"
+		else
+			title_copy.gsub!('"', ' ')
+			title_copy = @date[0..(@date.include?(' ') ? @date.index(' ') : @date.length)].concat '-'.concat title_copy
+			title_copy.gsub!(' ', '')
+			title_copy.concat ".markdown"
+		end
+	end
+
+	def write(name = default_name)
+		@date = nil if @date.include? ' '
+		
+		puts name
 	end
 end
 
@@ -27,14 +48,13 @@ unless first_arguments.include? ARGV[0]
 end
 
 unless ARGV[1]
-	puts "Second argument must be name of file!"
+	puts "Second argument must be title of page!"
 	exit -1
 end
 
 page = Page.new
 page.layout = ARGV[0] == "blog" ? "blog" : "project"
-#escape quotes
-page.title = ARGV[1]
-page.date = Time.now.strftime "%Y-%m-%d %H:%M:%S"
+page.title = '"' + ARGV[1] + '"'
+page.date = Time.now.strftime "%Y-%m-%d %H:%M:%S" if ARGV[0] == "blog"
 page.type = ARGV[0]
-page.write "hi"
+page.write
