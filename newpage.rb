@@ -1,4 +1,22 @@
 #! /usr/bin/ruby
+# newpage.rb - a Jekyll page generator
+#
+# Two required arguments,
+# 1. type of page - can be "blog", "game", or "other"
+# 2. title of page - examples "Pixel Zombies" or "Fun Ruby Concepts"
+# be sure to quote the title with multiple words!
+#
+# Additional modifiers,
+# -d - allows customization date of page
+# must have arguments
+# arguments come after -d= and are separated by a comma
+# max of six arguments
+# arguments modify year, month, day, hour, minute, and second respectively
+# example - -d=2012,5,3,1,34,20
+#
+# Examples,
+# ./newpage.rb blog "Jekyll"
+# ./newpage.rb -d=2013,1,19 game "Pixel Zombies"
 
 # page class to write stuff
 class Page
@@ -84,6 +102,11 @@ manip.each do |arg|
 		if time.length > 0
 			args = time.split ','
 
+			unless args.length < 7
+				puts "Too many arguments in #{arg}!"
+				exit -1
+			end
+
 			case neces[0]
 			when "blog"
 				page.date = Time.new(*args).strftime "%Y-%m-%d %H:%M:%S"
@@ -91,8 +114,6 @@ manip.each do |arg|
 				page.date = Time.new(*args).strftime "%Y-%m-%d"
 			end
 		end
-	elsif arg == "-u" or arg == "--usage"
-		puts "usage coming soon!"
 	end
 end
 
