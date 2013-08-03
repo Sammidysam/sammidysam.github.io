@@ -53,8 +53,6 @@ class Page
 
 	# create file for new page
 	def write(verbose = false)
-		@date = nil if !@date.include? ' '
-
 		if File.exist? default_name and !@force
 			puts "File by name #{name} already exists!"
 			exit -1
@@ -67,7 +65,7 @@ class Page
 			file.puts "layout: #{@layout}"
 			file.puts "title: #{@title}"
 			file.puts "type: #{@type}"
-			file.puts "date: #{@date}" if !@date.nil?
+			file.puts "date: #{@date}" if @type == "blog"
 			file.puts "github_url: #{@github_url}" if !@github_url.nil? and @type != "blog"
 			file.puts "---"
 			file.puts "\n\n"
