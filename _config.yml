@@ -4,5 +4,6 @@ email: sammidysam@gmail.com
 year: 2013
 github: https://github.com/Sammidysam
 
+exclude: [README.md, newpage.rb]
 markdown: redcarpet
 pygments: true
