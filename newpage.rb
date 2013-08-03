@@ -7,12 +7,18 @@
 # be sure to quote the title with multiple words!
 #
 # Additional modifiers,
-# -d - allows customization date of page
+# -d or --date - allows customization date of page
 # must have arguments
 # arguments come after -d= and are separated by a comma
 # max of six arguments
 # arguments modify year, month, day, hour, minute, and second respectively
 # example - -d=2012,5,3,1,34,20
+#
+# -f or --force - forces regeneration of page as default
+# in the future a -r or --regenerate could be added for safer regeneration
+# a use of this would be adding new variables
+#
+# -v or --verbose - verbose text
 #
 # Examples,
 # ./newpage.rb blog "Jekyll"
@@ -20,10 +26,19 @@
 
 # page class to write stuff
 class Page
+	attr_writer :force
+	
 	attr_writer :layout
 	attr_writer :title
-	attr_accessor :date
 	attr_writer :type
+	
+	attr_accessor :date
+	attr_writer :github_url
+
+	# initialize a variable
+	def initialize
+		@force = false
+	end
 
 	# the default file name
 	def default_name
@@ -37,28 +52,35 @@ class Page
 	end
 
 	# create file for new page
-	def write(name = default_name)
+	def write(verbose = false)
 		@date = nil if !@date.include? ' '
 
-		if File.exist? name
+		if File.exist? default_name and !@force
 			puts "File by name #{name} already exists!"
 			exit -1
 		end
+
+		puts "Writing to file #{name}" if verbose
 		
-		File.open name, 'w' do |file|
+		File.open default_name, 'w' do |file|
 			file.puts "---"
 			file.puts "layout: #{@layout}"
 			file.puts "title: #{@title}"
-			file.puts "date: #{@date}" if !@date.nil?
 			file.puts "type: #{@type}"
+			file.puts "date: #{@date}" if !@date.nil?
+			file.puts "github_url: #{@github_url}" if !@github_url.nil? and @type != "blog"
 			file.puts "---"
 			file.puts "\n\n"
 		end
+
+		puts "Written successfully!" if verbose
 	end
 end
 
 # certain allowed arguments
 first_arguments = ["blog", "game", "other"]
+
+verbose = false
 
 # arguments that change how the program runs
 manip = Array.new
@@ -91,12 +113,21 @@ unless neces[1]
 	exit -1
 end
 
+if neces[0] != "blog" and !neces[2]
+	puts "Third argument is normally the URL of the project on GitHub."
+	puts "You can go without it, but it would be better if it was open source."
+end
+
 # create new page
 page = Page.new
 
 # does stuff for manipulating arguments
 manip.each do |arg|
-	if arg.include? '=' and (arg[0..(arg.index('=') - 1)] == "-d" or arg[0..(arg.index('=') - 1)] == "--date")
+	if arg == "-v" or arg == "--verbose"
+		verbose = true
+
+		puts "Verbose text enabled!"
+	elsif arg.include? '=' and (arg[0..(arg.index('=') - 1)] == "-d" or arg[0..(arg.index('=') - 1)] == "--date")
 		time = arg[(arg.index('=') + 1)..arg.length]
 
 		if time.length > 0
@@ -113,12 +144,23 @@ manip.each do |arg|
 			else
 				page.date = Time.new(*args).strftime "%Y-%m-%d"
 			end
+
+			puts "Force-set date to #{page.date}!" if verbose
 		end
+	elsif arg == "-f" or arg == "--force"
+		page.force = true
+		
+		puts "Forcing regeneration!" if verbose
+	else
+		puts "Invalid manipulation argument #{arg}!"
 	end
 end
 
 page.layout = neces[0] == "blog" ? "post" : "project"
 page.title = neces[1]
-page.date = Time.now.strftime "%Y-%m-%d %H:%M:%S" if neces[0] == "blog" and page.date.nil?
 page.type = neces[0]
-page.write
+
+page.date = Time.now.strftime "%Y-%m-%d %H:%M:%S" if neces[0] == "blog" and page.date.nil?
+page.github_url = neces[2] if neces[2]
+
+page.write verbose

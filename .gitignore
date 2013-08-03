@@ -4,3 +4,6 @@ _site/
 # Backup files
 *~
 */*~
+
+# To-Do List
+.todo.json
