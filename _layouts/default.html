@@ -30,7 +30,14 @@
                 <p>
                   GitHub<br />
                   Email<br />
-                  &copy; {{ site.year }} {{ site.fullname }}
+                  &copy;
+                  {% assign year = site.time | date: '%Y' %}
+                  {% if year == '2013' %}
+                    2013
+                  {% else %}
+                    2013-{{ year }}
+                  {% endif %}
+                  {{ site.fullname }}
                 </p>
               </div>
               <div class="contact">

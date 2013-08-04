@@ -148,6 +148,11 @@ ul.posts span {
   border: none;
 }
 
+.post img {
+  width: 42em;
+  margin: 3em auto 2em;
+}
+
 /* terminal */
 .post pre.terminal {
   border: 1px solid #000;
