@@ -8,4 +8,4 @@ Development is in process still.
 License
 =======
 
-This website is licensed under the MIT License.  Mess with it as much as you want.  To see the license, visit the file [LICENSE](LICENSE).
+This website is licensed under the MIT License.  Mess with it as much as you want.  If using something from the directories `_posts` or `img`, it would be nice to credit me as the original author, but that is not completely necessary.  To see the license, visit the file [LICENSE](LICENSE).
