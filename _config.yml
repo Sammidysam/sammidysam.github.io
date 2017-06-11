@@ -1,8 +1,0 @@
-name: Sammidysam
-fullname: Sam Craig
-email: sammidysam@gmail.com
-github: https://github.com/Sammidysam
-
-exclude: [README.md, newpage.rb]
-markdown: redcarpet
-pygments: true
