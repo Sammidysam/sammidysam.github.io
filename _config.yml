@@ -1,0 +1,10 @@
+strict_front_matter: true
+liquid:
+  error_mode: strict
+
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      layout: "default"
