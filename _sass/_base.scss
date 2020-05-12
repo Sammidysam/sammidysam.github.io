@@ -1,0 +1,52 @@
+body {
+  max-width: 800px;
+  margin: auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+
+  margin-top: 40px;
+}
+
+.header > div {
+  margin-right: 15px;
+
+  a, a:visited, a:hover, a:active {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+}
+
+.profile-picture img {
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+
+  border-radius: 50px;
+  border-width: 2px;
+  border-color: gray;
+  border-style: solid;
+}
+
+.bass-clef {
+  max-width: 40px;
+  max-height: 40px;
+
+  margin-left: auto;
+}
+
+.bass-clef img {
+  width: 100%;
+  height: 100%;
+}
+
+.page-content {
+  margin-top: 40px;
+}

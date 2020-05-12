@@ -1,7 +1,10 @@
-strict_front_matter: true
-liquid:
-  error_mode: strict
+title: Sam Craig
+description: Sam Craig's personal website
+cssurl: "/assets/css"
+imgurl: "/assets/img"
+url: "http://sammidysam.github.io/"
 
+# Not sure if this is working.
 defaults:
   -
     scope:

@@ -1,6 +1,7 @@
 # Generated Jekyll site
 _site/
 .jekyll-cache/
+.jekyll-metadata
 
 # Backup files
 *~
