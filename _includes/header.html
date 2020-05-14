@@ -4,8 +4,20 @@
       <img src="{{ site.imgurl }}/profile.jpeg" />
     </a>
   </div>
-  {% include navbar-item.html name="Sam Craig" route="/" %}
-  {% include navbar-item.html name="Music" route="/music" %}
+  <div class="middle-row">
+    <div class="icon-row">
+      {% assign logopath = imgurl | append: "/icon" %}
+      {% for image in site.static_files %}
+        {% if image.path contains logopath %}
+          <img src="{{ image.path }}" />
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="navbar-row">
+      {% include navbar-item.html name="Sam Craig" route="/" %}
+      {% include navbar-item.html name="Music" route="/music" %}
+    </div>
+  </div>
   <div class="bass-clef">
     <img src="{{ site.imgurl }}/bass-clef.png" />
   </div>
