@@ -6,6 +6,7 @@ _site/
 # Backup files
 *~
 */*~
+.DS_Store
 
 # To-Do List
 .todo.json
