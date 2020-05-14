@@ -1,7 +1,14 @@
+html {
+  height: 100%;
+}
+
 body {
   max-width: 800px;
+  height: calc(100% - 40px);
   margin: auto;
   font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .header {
@@ -49,4 +56,19 @@ body {
 
 .page-content {
   margin-top: 40px;
+  margin-bottom: auto;
+}
+
+.footer {
+  border-top: thin solid #d3d3d3;
+  height: 40px;
+
+  p {
+    color: #d3d3d3;
+    font-size: 12px;
+  }
+
+  a {
+    color: darken(#d3d3d3, 10%);
+  }
 }

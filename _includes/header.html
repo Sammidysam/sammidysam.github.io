@@ -1,9 +1,11 @@
 <div class="header">
   <div class="profile-picture">
-    <img src="{{ site.imgurl }}/profile.jpeg" />
+    <a href="/">
+      <img src="{{ site.imgurl }}/profile.jpeg" />
+    </a>
   </div>
   {% include navbar-item.html name="Sam Craig" route="/" %}
-  {% include navbar-item.html name="Music" route="/music/index.html" %}
+  {% include navbar-item.html name="Music" route="/music" %}
   <div class="bass-clef">
     <img src="{{ site.imgurl }}/bass-clef.png" />
   </div>

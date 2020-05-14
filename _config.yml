@@ -4,6 +4,8 @@ cssurl: "/assets/css"
 imgurl: "/assets/img"
 url: "http://sammidysam.github.io/"
 
+permalink: pretty
+
 # Not sure if this is working.
 defaults:
   -
