@@ -115,8 +115,10 @@ body {
   font-weight: bold;
 }
 
-dl > *:not(:last-child) {
-  margin-bottom: 1em;
+dl {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 dt {
