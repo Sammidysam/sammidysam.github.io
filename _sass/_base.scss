@@ -114,3 +114,15 @@ body {
   font-size: 1.2em;
   font-weight: bold;
 }
+
+dl > *:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 0;
+}
